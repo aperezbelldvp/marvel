@@ -1,0 +1,62 @@
+<div *ngIf="!hero; else divHeroe" role="status" class="flex justify-center items-center mt-20">
+  <!-- Load spinner if no hero -->
+  <app-spinner></app-spinner>
+</div>
+
+<!-- Hero details -->
+<ng-template #divHeroe>
+  <div class="flex justify-center items-center mt-4 pb-4 mx-4" [@fadeInOut]>
+    <div class="max-w-4xl w-full">
+      <div class="bg-gray-800 p-8 rounded-lg shadow-lg">
+        <div class="md:flex">
+          <div class="md:flex-shrink-0">
+            <img class="hero-image w-64 h-64 object-cover rounded-lg shadow-md mx-auto mb-4"
+              [src]="hero.thumbnail.path + '.' + hero.thumbnail.extension" [alt]="hero.name" />
+          </div>
+
+          <div class="mt-4 md:mt-0 md:ml-6">
+            <h1 class="text-3xl text-center font-bold text-white" [style.color]="color">{{ hero.name }}</h1>
+            <p class="text-gray-300 mt-2" *ngIf="hero.description">{{ hero.description }}</p>
+            <!-- Comics -->
+            <div class="mt-4" *ngIf="hero.comics.items!.length > 0">
+              <h2 class="text-lg font-bold text-white">Comics:</h2>
+              <ul class="list-disc ml-8 text-gray-300">
+                <li *ngFor="let comic of hero.comics.items">
+                  {{ comic.name }}
+                </li>
+              </ul>
+            </div>
+            <!-- Series -->
+            <div class="mt-4" *ngIf="hero.series.items!.length > 0">
+              <h2 class="text-lg font-bold text-white">Series:</h2>
+              <ul class="list-disc ml-8 text-gray-300">
+                <li *ngFor="let serie of hero.series.items">
+                  {{ serie.name }}
+                </li>
+              </ul>
+            </div>
+            <!-- Histories -->
+            <div class="mt-4" *ngIf="hero.stories.items!.length > 0">
+              <h2 class="text-lg font-bold text-white">Historias:</h2>
+              <ul class="list-disc ml-8 text-gray-300">
+                <li *ngFor="let story of hero.stories.items">
+                  {{ story.name }}
+                </li>
+              </ul>
+            </div>
+            <!-- Events -->
+            <div class="mt-4" *ngIf="hero.events.items!.length > 0">
+              <h2 class="text-lg font-bold text-white">Eventos:</h2>
+              <ul class="list-disc ml-8 text-gray-300">
+                <li *ngFor="let event of hero.events.items">
+                  {{ event.name }}
+                </li>
+              </ul>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
