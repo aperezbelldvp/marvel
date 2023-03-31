@@ -1,0 +1,19 @@
+<div class="m-10">
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+    <div *ngFor="let hero of heroes" class="bg-white rounded-lg overflow-hidden shadow-md" [@listAnimation]>
+      <app-hero-card [hero]="hero"></app-hero-card>
+    </div>
+  </div>
+  <div *ngIf="!heroes?.length && !loading" class="text-center text-gray-500 py-4">
+    <div class="flex flex-col items-center justify-center">
+      <img src="https://gifdb.com/images/file/sorry-oops-iron-man-55nos0sxxpprp1fm.gif" alt="Giff error" class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 mb-4">
+      <p class="text-2xl mt-4">No se ha encontrado ningún héroe con ese nombre</p>
+    </div>
+    <div class="mt-4">
+      <a routerLink="/heroes" class="bg-red-500 text-white px-6 py-3 rounded-lg hover:bg-red-600 transition-colors text-base sm:text-lg md:text-xl lg:text-2xl">Volver a la página principal</a>
+    </div>
+  </div>
+  <div *ngIf="loading" class="flex justify-center py-4">
+    <app-spinner></app-spinner>
+  </div>
+</div>
